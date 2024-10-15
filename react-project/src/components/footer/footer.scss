@@ -1,11 +1,23 @@
 footer {
-  color: #FFFFFF;
-  background-color: #313546;
+  color: #ffffff;
+  // 指定されている色 ⇒ MAIN/PRIMARY #313546;
+  // 実際にスポイトでモックから採取した色 ⇒ #292E2D
+  border-top: solid 1px #545857;
+  justify-content: space-between;
+  background-color: #292e2d;
   width: 100%;
   height: 50px;
-  position: fixed;
-  bottom: 0;
+  position: fixed; // 下部固定
+  bottom: 0; // 下部固定
+  display: flex;
+  font-size: 12px;
+  align-items: center;
 
-  // &-copyright {
-  // }
+  .footerContent {
+    margin: 0 32px;
+  }
+
+  .navigation:not(:first-of-type) {
+    margin-left: 24px;
+  }
 }

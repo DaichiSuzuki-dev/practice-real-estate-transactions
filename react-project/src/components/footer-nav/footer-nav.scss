@@ -1,0 +1,17 @@
+.navigation {
+  height: 18px;
+  display: flex;
+  align-items: center;
+  display: inline-block;
+
+  &-pageName {
+    display: inline-block;
+    font-weight: 400;
+    margin: 0;
+  }
+
+  &-icon {
+    margin-left: 6px;
+    color: #545857;
+  }
+}
