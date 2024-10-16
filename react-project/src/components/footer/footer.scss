@@ -2,9 +2,10 @@ footer {
   color: #ffffff;
   // 指定されている色 ⇒ MAIN/PRIMARY #313546;
   // 実際にスポイトでモックから採取した色 ⇒ #292E2D
-  border-top: solid 1px #545857;
-  justify-content: space-between;
   background-color: #292e2d;
+  justify-content: space-between;
+  border-top: solid 1px #545857;
+  box-sizing: border-box; // ボーダーの幅を含めて幅を計算
   width: 100%;
   height: 50px;
   position: fixed; // 下部固定
