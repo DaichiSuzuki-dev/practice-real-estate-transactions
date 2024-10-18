@@ -1,18 +1,32 @@
+$main-primary_light: #f0f3f5;
+$main-white: #ffffff;
+$text-text_link: #0071c1;
+$component-border: #e5e5e5;
+
+@mixin border-radius($radius) {
+  border-radius: $radius;
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  -ms-border-radius: $radius;
+  -o-border-radius: $radius;
+}
+
 .main-transactionPrice {
   width: 100%;
   height: 100%;
 
   &-background {
-    height: 100%;
     width: 100%;
-    opacity: 0.8;
-    background-color: black;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    flex-direction: column;
 
     .titleContent {
-      color: white;
+      color: $main-white;
       padding-top: 40px;
       margin: 0 40px;
-      border-bottom: 1px solid #535756;
+      border-bottom: 1px solid $component-border;
       display: flex;
       flex-direction: row;
       align-items: flex-end;
@@ -38,9 +52,112 @@
         }
       }
     }
-  }
-}
 
-.aaa {
-  color: white;
+    .graphContent {
+      flex: 1;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-end;
+      margin: 40px;
+
+      &-control {
+        width: 359px;
+        height: 100%;
+        background-color: $main-primary_light;
+        @include border-radius(5px);
+
+        .form {
+          margin: 0 26px 0 24px;
+          font-size: 14px;
+          display: flex;
+          flex-direction: column;
+          height: 100%;
+
+          @mixin selectBox {
+            width: 240px;
+            height: 40px;
+            border: none;
+            padding: 0 16px;
+            @include border-radius(2px);
+          }
+
+          &-title {
+            font-size: 16px;
+            margin: 24px 0;
+          }
+
+          &-place {
+            padding: 16px 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-top: 1px solid $component-border;
+            border-bottom: 1px solid $component-border;
+
+            &-itemName .text {
+              margin-left: 6px;
+            }
+
+            &-selectBox {
+              @include selectBox;
+            }
+          }
+
+          &-year {
+            padding: 16px 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            &-itemName .text {
+              margin-left: 6px;
+            }
+
+            &-selectBox {
+              @include selectBox;
+            }
+          }
+
+          &-kinds {
+            padding: 16px 0;
+            display: flex;
+
+            &-itemName .text {
+              margin-left: 6px;
+            }
+
+            &-radioGroup {
+              display: flex;
+              flex-direction: column;
+              margin-left: 16px;
+              gap: 10px;
+
+              label {
+                display: flex;
+                align-items: center;
+                gap: 6px;
+              }
+
+              input[type="radio"] {
+                width: 24px;
+                height: 24px;
+              }
+            }
+          }
+
+          &-download {
+            width: 100%;
+            height: 52px;
+            border: none;
+            @include border-radius(2px);
+            background-color: $text-text_link;
+            color: $main-white;
+            font-size: 16px;
+            margin-top: auto;
+            margin-bottom: 24px;
+          }
+        }
+      }
+    }
+  }
 }
