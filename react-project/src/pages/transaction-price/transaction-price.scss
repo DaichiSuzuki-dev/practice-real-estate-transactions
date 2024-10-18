@@ -23,20 +23,10 @@
         margin-bottom: 10px;
 
         &-title {
-          display: flex;
-          flex-direction: row;
-          align-items: center;
+          font-size: 32px;
 
-          &-icon {
-            width: 30px;
-            height: 30px;
-            margin-right: 8px;
-          }
-
-          &-text {
-            font-size: 32px;
-            font-weight: 400;
-            margin: 0;
+          .text {
+            margin-left: 16px;
           }
         }
 
@@ -49,4 +39,8 @@
       }
     }
   }
+}
+
+.aaa {
+  color: white;
 }

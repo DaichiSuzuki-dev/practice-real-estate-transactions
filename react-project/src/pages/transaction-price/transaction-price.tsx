@@ -1,7 +1,7 @@
 import React from "react";
 import "./transaction-price.scss";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSquarePollVertical } from "@fortawesome/free-solid-svg-icons";
+import IconText from "../../components/ui/icon-and-text-pair";
 
 const TransactionPrice: React.FC = () => {
   return (
@@ -9,13 +9,12 @@ const TransactionPrice: React.FC = () => {
       <div className="main-transactionPrice-background">
         <section className="titleContent">
           <div className="titleContent-container">
-            <div className="titleContent-container-title">
-              <FontAwesomeIcon icon={faSquarePollVertical} className="titleContent-container-title-icon" />
-              <h1 className="titleContent-container-title-text">取引価格</h1>
-            </div>
+            <IconText icon={faSquarePollVertical} text="取引価格" className="titleContent-container-title" classNameIcon="icon" classNameText="text" />
             <p className="titleContent-container-description">※取引価格1㎡あたり</p>
           </div>
         </section>
+
+        <section className="graphContent"></section>
       </div>
     </div>
   );
