@@ -64,6 +64,27 @@ const TransactionPrice: React.FC = () => {
     </div>
   );
 
+  const getPlaceName = (placeCode: string) => {
+    const placeOptions = [
+      { value: "13", label: "東京都" },
+      { value: "14", label: "神奈川県" },
+      { value: "11", label: "埼玉県" },
+      { value: "12", label: "千葉県" },
+    ];
+    return placeOptions.find((option) => option.value === placeCode)?.label || "";
+  };
+
+  const getTypeName = (typeCode: string) => {
+    const typeOptions = [
+      { value: "1", label: "土地（住宅地）" },
+      { value: "2", label: "土地（商業地）" },
+      { value: "3", label: "中古マンション等" },
+      { value: "4", label: "農地" },
+      { value: "5", label: "林地" },
+    ];
+    return typeOptions.find((option) => option.value === typeCode)?.label || "";
+  };
+
   return (
     <div className="main-transactionPrice" style={{ backgroundImage: `url('/images/map-image.png')` }}>
       <div className="main-transactionPrice-background">
@@ -75,6 +96,14 @@ const TransactionPrice: React.FC = () => {
         </section>
 
         <section className="graphContent">
+          <div className="graphContent-graph">
+            <div className="graphContent-graph-title">
+              <IconText icon={faLocationDot} text={getPlaceName(formData.place)} className="graphContent-graph-title-itemName" classNameIcon="icon" classNameText="text" />
+              <IconText icon={faCalendarCheck} text={`${formData.year}年`} className="graphContent-graph-title-itemName" classNameIcon="icon" classNameText="text" />
+              <IconText icon={faShapes} text={getTypeName(formData.type)} className="graphContent-graph-title-itemName" classNameIcon="icon" classNameText="text" />
+            </div>
+          </div>
+
           <div className="graphContent-control">
             <form className="form" onSubmit={handleSubmit}>
               <div className="form-title">表示内容を選択</div>

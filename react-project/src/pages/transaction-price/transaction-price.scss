@@ -164,6 +164,25 @@ $component-border: #e5e5e5;
           }
         }
       }
+
+      &-graph {
+        color: $main-white;
+        margin: 0 auto;
+
+        &-title {
+          font-size: 24px;
+          display: flex;
+          flex-direction: row;
+
+          &-itemName .text {
+            margin-left: 12px;
+          }
+
+          &-itemName .icon:not(first-type) {
+            margin-left: 48px;
+          }
+        }
+      }
     }
   }
 }
