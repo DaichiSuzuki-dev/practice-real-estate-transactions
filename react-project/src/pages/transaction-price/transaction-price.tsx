@@ -1,9 +1,74 @@
-import React from "react";
+import React, { useState } from "react";
 import "./transaction-price.scss";
 import { faSquarePollVertical, faCalendarCheck, faLocationDot, faShapes } from "@fortawesome/free-solid-svg-icons";
 import IconText from "../../components/ui/icon-and-text-pair";
 
 const TransactionPrice: React.FC = () => {
+  const [formData, setFormData] = useState({
+    place: "13",
+    year: "2022",
+    type: "1",
+  });
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLSelectElement | HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormData((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    try {
+      const { year, place, type } = formData;
+      const apiUrl = `https://opendata.resas-portal.go.jp/api/v1/townPlanning/estateTransaction/bar?year=${year}&prefCode=${place}&cityCode=13101&displayType=${type}`;
+      const API_KEY = process.env.REACT_APP_RESAS_API_KEY;
+
+      if (!API_KEY) {
+        throw new Error("API キーが設定されていません。");
+      }
+
+      const response = await fetch(apiUrl, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          "X-API-KEY": API_KEY,
+        } as HeadersInit,
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        console.log("APIレスポンス:", data);
+      } else {
+        console.error("APIリクエストに失敗しました");
+      }
+    } catch (error) {
+      console.error("エラーが発生しました:", error);
+    }
+  };
+
+  const renderSelectBox = (name: string, options: { value: string; label: string }[]) => (
+    <select className={`form-${name}-selectBox`} name={name} value={formData[name as keyof typeof formData]} onChange={handleInputChange}>
+      {options.map((option) => (
+        <option key={option.value} value={option.value}>
+          {option.label}
+        </option>
+      ))}
+    </select>
+  );
+
+  const renderRadioGroup = (options: { value: string; label: string }[]) => (
+    <div className="form-kinds-radioGroup">
+      {options.map((option) => (
+        <label key={option.value}>
+          <input type="radio" name="type" value={option.value} checked={formData.type === option.value} onChange={handleInputChange} />
+          {option.label}
+        </label>
+      ))}
+    </div>
+  );
+
   return (
     <div className="main-transactionPrice" style={{ backgroundImage: `url('/images/map-image.png')` }}>
       <div className="main-transactionPrice-background">
@@ -16,52 +81,37 @@ const TransactionPrice: React.FC = () => {
 
         <section className="graphContent">
           <div className="graphContent-control">
-            <form className="form" method="GET">
+            <form className="form" onSubmit={handleSubmit}>
               <div className="form-title">表示内容を選択</div>
 
               <div className="form-place">
                 <IconText icon={faLocationDot} text="場所" className="form-place-itemName" classNameText="text" />
-                <select className="form-place-selectBox" name="場所">
-                  <option value="13">東京都</option>
-                  <option value="14">神奈川県</option>
-                  <option value="11">埼玉県</option>
-                  <option value="12">千葉県</option>
-                </select>
+                {renderSelectBox("place", [
+                  { value: "13", label: "東京都" },
+                  { value: "14", label: "神奈川県" },
+                  { value: "11", label: "埼玉県" },
+                  { value: "12", label: "千葉県" },
+                ])}
               </div>
 
               <div className="form-year">
                 <IconText icon={faCalendarCheck} text="年度" className="form-year-itemName" classNameText="text" />
-                <select className="form-year-selectBox" name="年度">
-                  <option value="2022">2022年</option>
-                  <option value="2023">2023年</option>
-                  <option value="2024">2024年</option>
-                </select>
+                {renderSelectBox("year", [
+                  { value: "2019", label: "2019年" },
+                  { value: "2020", label: "2020年" },
+                  { value: "2021", label: "2021年" },
+                ])}
               </div>
 
               <div className="form-kinds">
                 <IconText icon={faShapes} text="種別" className="form-kinds-itemName" classNameText="text" />
-                <div className="form-kinds-radioGroup">
-                  <label>
-                    <input type="radio" name="種別" value="1" defaultChecked />
-                    土地（住宅地）
-                  </label>
-                  <label>
-                    <input type="radio" name="種別" value="2" />
-                    土地（商業地）
-                  </label>
-                  <label>
-                    <input type="radio" name="種別" value="3" />
-                    中古マンション等
-                  </label>
-                  <label>
-                    <input type="radio" name="種別" value="4" />
-                    農地
-                  </label>
-                  <label>
-                    <input type="radio" name="種別" value="5" />
-                    林地
-                  </label>
-                </div>
+                {renderRadioGroup([
+                  { value: "1", label: "土地（住宅地）" },
+                  { value: "2", label: "土地（商業地）" },
+                  { value: "3", label: "中古マンション等" },
+                  { value: "4", label: "農地" },
+                  { value: "5", label: "林地" },
+                ])}
               </div>
 
               <button type="submit" className="form-download">
