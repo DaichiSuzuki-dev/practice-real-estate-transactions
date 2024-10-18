@@ -6,7 +6,7 @@ import IconText from "../../components/ui/icon-and-text-pair";
 const TransactionPrice: React.FC = () => {
   const [formData, setFormData] = useState({
     place: "13",
-    year: "2022",
+    year: "2019",
     type: "1",
   });
 
@@ -23,17 +23,12 @@ const TransactionPrice: React.FC = () => {
     try {
       const { year, place, type } = formData;
       const apiUrl = `https://opendata.resas-portal.go.jp/api/v1/townPlanning/estateTransaction/bar?year=${year}&prefCode=${place}&cityCode=13101&displayType=${type}`;
-      const API_KEY = process.env.REACT_APP_RESAS_API_KEY;
-
-      if (!API_KEY) {
-        throw new Error("API キーが設定されていません。");
-      }
 
       const response = await fetch(apiUrl, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
-          "X-API-KEY": API_KEY,
+          "X-API-KEY": process.env.REACT_APP_RESAS_API_KEY,
         } as HeadersInit,
       });
 
