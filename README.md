@@ -4,7 +4,7 @@
 - **node.js** : v16.18.1
 - **React.js**
 - **TypeScript**
-- **Sass*
+- **Sass**
 
 ### パッケージマネージャー
 - **npm** : v10.8.2
