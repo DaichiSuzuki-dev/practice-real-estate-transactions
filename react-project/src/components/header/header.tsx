@@ -3,11 +3,11 @@ import "./header.scss";
 
 const Header: React.FC = () => {
   return (
-    <header className="header">
+    <div className="header">
       <div className="header-logo">
         <img src="/images/logo-landit.png" alt="Landit Logo" />
       </div>
-    </header>
+    </div>
   );
 };
 

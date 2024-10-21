@@ -1,11 +1,30 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap");
+
+html {
+  font-size: 16px;
+}
+
+body {
+  font-size: 16px;
+  font-family: "Noto Sans JP", sans-serif;
+}
+
 .App {
   display: flex;
   flex-direction: column;
   height: 100vh;
   overflow: hidden;
 
+  .header {
+    height: 74px;
+  }
+
   .main {
     flex: 1;
     overflow-y: auto;
+  }
+
+  .footer {
+    height: 50px;
   }
 }

@@ -1,4 +1,5 @@
 import React from "react";
+import "./icon-and-text-pair.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
 
@@ -13,11 +14,10 @@ interface IconTextProps {
 const IconText: React.FC<IconTextProps> = ({ icon, text, className, classNameIcon, classNameText }) => {
   return (
     <div className={`iconText ${className}`}>
-      <FontAwesomeIcon icon={icon} className={`iconText-icon ${classNameIcon}`} />
-      <span className={`iconText-text ${classNameText}`}>{text}</span>
+      <FontAwesomeIcon icon={icon} className={`${classNameIcon}`} />
+      <span className={`${classNameText}`}>{text}</span>
     </div>
   );
 };
 
 export default IconText;
-

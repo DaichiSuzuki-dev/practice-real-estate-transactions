@@ -42,11 +42,6 @@ const TransactionPrice: React.FC = () => {
     }
   };
 
-  // フォームデータが変更されたら API からデータを取得
-  useEffect(() => {
-    fetchData();
-  }, [formData]);
-
   // セレクトボックスを描画する関数
   const renderSelectBox = (name: string, options: { value: string; label: string }[]) => (
     <select className={`form-${name}-selectBox`} name={name} value={formData[name as keyof typeof formData]} onChange={handleInputChange}>

@@ -1,17 +1,18 @@
 import React from "react";
+import IconText from "../ui/icon-and-text-pair";
 import "./footer.scss";
-import FooterNav from "../footer-nav/footer-nav";
+import { faWindowRestore } from "@fortawesome/free-regular-svg-icons";
 
 const Footer: React.FC = () => {
   return (
-    <footer className="footer">
-      <div className="footer-navigation footerContent">
-        <FooterNav pageName="利用規約" />
-        <FooterNav pageName="プライバシーポリシー" />
-      </div>
+    <div className="footer">
+      <section className="footer-footerNav">
+        <IconText icon={faWindowRestore} text="利用規約" className="footer-footerNav-item" classNameIcon="footer-footerNav-item-icon" />
+        <IconText icon={faWindowRestore} text="プライバシーポリシー" className="footer-footerNav-item" classNameIcon="footer-footerNav-item-icon" />
+      </section>
 
-      <p className="footer-copyright footerContent">© 2023 Landit Inc.</p>
-    </footer>
+      <p className="footer-copyright">© 2023 Landit Inc.</p>
+    </div>
   );
 };
 
