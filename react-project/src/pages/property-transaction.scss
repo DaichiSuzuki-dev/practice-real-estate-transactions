@@ -1,0 +1,39 @@
+@import "/src/styles/colors.scss";
+@import "/src/styles/typography.scss";
+
+$background-overlay-color: rgba($main-primary, 0.85);
+
+.propertyTransaction {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  // background-color は背景画像より下位のレイヤーに描画されるため、linear-gradient を使用する
+  // background では、左の値から「,」区切りで上位レイヤーが表示される仕様とのこと
+  background: linear-gradient($background-overlay-color, $background-overlay-color), var(--background-image) no-repeat center center;
+  object-fit: cover;
+
+  &-titleArea {
+    height: 56px;
+    margin: 40px 40px 0 40px;
+    color: $main-white;
+    border-bottom: 1px solid $text-grey;
+    box-sizing: border-box;
+
+    &-content {
+      height: 40px;
+      display: flex;
+      align-items: flex-end;
+      gap: 16px;
+
+      &-title {
+        font-size: $font-size-xxl;
+        gap: 8px;
+      }
+
+      &-description {
+        font-size: $font-size-s;
+      }
+    }
+  }
+}

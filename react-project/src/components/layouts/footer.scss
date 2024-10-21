@@ -6,23 +6,20 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  box-sizing: border-box;
   color: $text-white;
   font-size: $font-size-xs;
   background-color: $main-primary;
   border-top: 1px solid $text-grey;
+  box-sizing: border-box;
 
   &-footerNav {
     display: flex;
     margin-left: 32px;
+    gap: 24px;
 
     &-item {
       display: flex;
       flex-direction: row-reverse;
-
-      &:not(:first-of-type) {
-        margin-left: 24px;
-      }
 
       &-icon {
         margin-left: 8px;

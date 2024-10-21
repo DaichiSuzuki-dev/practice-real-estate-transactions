@@ -1,6 +1,6 @@
 import "./App.scss";
 import Header from "./components/layouts/header";
-import TransactionPrice from "./pages/transaction-price";
+import PropertyTransaction from "./pages/property-transaction";
 import Footer from "./components/layouts/footer";
 
 function App() {
@@ -11,7 +11,7 @@ function App() {
       </header>
 
       <main className="main">
-        <TransactionPrice />
+        <PropertyTransaction />
       </main>
 
       <footer className="footer">
