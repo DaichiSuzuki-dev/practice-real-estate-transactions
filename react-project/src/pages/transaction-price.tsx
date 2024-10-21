@@ -1,10 +1,10 @@
 // 必要なライブラリとコンポーネントをインポート
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Bar } from "react-chartjs-2";
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from "chart.js";
 import "./transaction-price.scss";
 import { faSquarePollVertical, faCalendarCheck, faLocationDot, faShapes } from "@fortawesome/free-solid-svg-icons";
-import IconText from "../../components/ui/icon-and-text-pair";
+import IconText from "../components/ui/icon-and-text-pair";
 
 // グラフ描画に必要な要素を登録
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);

@@ -1,7 +1,7 @@
 import "./App.scss";
-import Header from "./components/header/header";
-import TransactionPrice from "./pages/transaction-price/transaction-price";
-import Footer from "./components/footer/footer";
+import Header from "./components/layouts/header";
+import TransactionPrice from "./pages/transaction-price";
+import Footer from "./components/layouts/footer";
 
 function App() {
   return (

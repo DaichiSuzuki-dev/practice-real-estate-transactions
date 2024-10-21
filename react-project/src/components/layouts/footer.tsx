@@ -1,6 +1,6 @@
 import React from "react";
-import IconText from "../ui/icon-and-text-pair";
 import "./footer.scss";
+import IconText from "../ui/icon-and-text-pair";
 import { faWindowRestore } from "@fortawesome/free-regular-svg-icons";
 
 const Footer: React.FC = () => {
