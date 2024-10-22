@@ -51,6 +51,8 @@ $background-overlay-color: rgba($main-primary, 0.85);
       display: flex;
       flex-direction: column;
       align-items: center;
+      justify-content: center;
+      gap: 80px;
 
       &-title {
         display: flex;

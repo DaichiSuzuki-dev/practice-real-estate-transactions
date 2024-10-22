@@ -6,6 +6,9 @@ import RenderSelectBox from "../components/forms/render-select-box";
 import RenderRadioGroup from "../components/forms/render-radio-group";
 import RectangularButton from "../components/ui/rectangular-button";
 import { prefCodeOptions, yearOptions, displayTypeOptions } from "../data/propertyTransactionOptions";
+import { Bar } from "react-chartjs-2";
+import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from "chart.js";
+ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
 const PropertyTransaction = () => {
   // useState関数を使用することで、リアクティブに状態管理が行えるそう
@@ -71,6 +74,64 @@ const PropertyTransaction = () => {
     return foundOption ? foundOption.label : "Undefined";
   };
 
+  const graphData = {
+    labels: [findLabelForValue(prefCodeOptions, formData.place), "全国平均"],
+    datasets: [
+      {
+        label: "不動産取引価格(面積あたり平均価格)",
+        data: [apiData || null, 50000],
+        backgroundColor: ["#4fad66", "#605d55"],
+      },
+    ],
+  };
+
+  const graphOptions = {
+    responsive: false,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: {
+        display: false,
+      },
+      title: {
+        display: true,
+        text: "(円/㎡)",
+        position: "top" as const,
+        align: "start" as const,
+        color: "#FFFFFF",
+        font: {
+          size: 12,
+        },
+        padding: {
+          bottom: 30,
+        },
+      },
+    },
+    scales: {
+      x: {
+        ticks: {
+          color: "#FFFFFF",
+        },
+        grid: {
+          display: false,
+        },
+        border: {
+          color: "#FFFFFF",
+        },
+      },
+      y: {
+        ticks: {
+          color: "#FFFFFF",
+        },
+        grid: {
+          display: false,
+        },
+        border: {
+          color: "#FFFFFF",
+        },
+      },
+    },
+  };
+
   return (
     <div className="propertyTransaction" style={{ "--background-image": 'url("/images/map-image.png")' } as React.CSSProperties}>
       <section className="propertyTransaction-titleArea">
@@ -87,6 +148,8 @@ const PropertyTransaction = () => {
             <IconText icon={faCalendarCheck} text={`${formData.year}年`} className="graphTitleItemName" />
             <IconText icon={faShapes} text={findLabelForValue(displayTypeOptions, formData.kinds)} className="graphTitleItemName" />
           </div>
+
+          <Bar data={graphData} options={graphOptions} width={713} height={446} />
         </article>
 
         <article className="propertyTransaction-graphArea-control">

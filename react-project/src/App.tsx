@@ -1,7 +1,6 @@
 import "./App.scss";
 import Header from "./components/layouts/header";
 import PropertyTransaction from "./pages/property-transaction";
-import TransactionPrice from "./pages/transaction-price";
 import Footer from "./components/layouts/footer";
 
 function App() {
@@ -13,7 +12,6 @@ function App() {
 
       <main className="main">
         <PropertyTransaction />
-        {/* <TransactionPrice /> */}
       </main>
 
       <footer className="footer">
