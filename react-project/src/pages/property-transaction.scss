@@ -1,5 +1,6 @@
 @import "/src/styles/colors.scss";
 @import "/src/styles/typography.scss";
+@import "/src/components/forms/render-radio-group.scss";
 
 $background-overlay-color: rgba($main-primary, 0.85);
 
@@ -46,7 +47,7 @@ $background-overlay-color: rgba($main-primary, 0.85);
   }
 
   &-graphArea {
-    height: 780px;
+    height: 100%;
     margin: 40px;
     display: flex;
     justify-content: flex-end;
@@ -58,22 +59,35 @@ $background-overlay-color: rgba($main-primary, 0.85);
       background-color: $main-primary-light;
       @include border-radius(4px);
 
-      &-title {
-        height: 48px;
-        font-size: $font-size-m;
-        margin: 24px;
-      }
+      > * {
+        margin: 0 24px;
 
-      &-place,
-      &-year {
-        margin: 0 26px 0 24px;
-        padding: 24px 0 24px 0;
-        display: flex;
-        font-size: $font-size-s;
-        gap: 24px;
+        &:first-of-type {
+          //&:last-of-type
+          margin-top: 24px;
+          margin-bottom: 24px;
+          font-size: $font-size-m;
+        }
+
+        &:not(:first-of-type) {
+          font-size: $font-size-s;
+          border-top: 1px solid $component-border;
+          padding: 24px 0;
+          display: flex;
+          gap: 24px;
+        }
 
         .formItemName {
           gap: 8px;
+        }
+      }
+
+      &-kinds {
+        align-items: flex-start;
+
+        .formItemName {
+          // ラジオボタン 1 つ分の高さで上下中央揃え
+          height: $radio-button-size;
         }
       }
     }
