@@ -17,6 +17,9 @@ const PropertyTransaction = () => {
     kinds: "1",
   });
 
+  // APIから取得したデータを格納する
+  const [apiData, setApiData] = useState<number>();
+
   // フォーム内の値が変更された時に呼び出し、その値をstateに反映させる
   // SelectまたはInputからのイベントに限定して変更を検知する
   // 参照：https://nano-toy-lab.com/react/select/
@@ -26,6 +29,40 @@ const PropertyTransaction = () => {
       // 変更されたイベントをターゲットとして、keyとvalueをセットする
       [e.target.name]: e.target.value,
     });
+  };
+
+  const fetchData = async () => {
+    try {
+      const apiKey = process.env.REACT_APP_RESAS_API_KEY;
+      if (!apiKey) {
+        console.error("API キーが設定されていません。");
+        return;
+      }
+
+      const response = await fetch(`https://opendata.resas-portal.go.jp/api/v1/townPlanning/estateTransaction/bar?year=${formData.year}&prefCode=${formData.place}&cityCode=-&displayType=${formData.kinds}`, {
+        method: "GET",
+        headers: {
+          "X-API-KEY": apiKey,
+        },
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        console.log("APIレスポンス:", data);
+        setApiData(data.result.years[0].value);
+      } else {
+        console.error("APIリクエストに失敗しました");
+      }
+    } catch (error) {
+      console.error("エラーが発生しました:", error);
+    }
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    // フォームのデフォルトの送信動作 (ページのリロード)を防ぐ
+    // 参照：https://qiita.com/tochiji/items/4e9e64cabc0a1cd7a1ae
+    e.preventDefault();
+    await fetchData();
   };
 
   return (
@@ -39,17 +76,17 @@ const PropertyTransaction = () => {
 
       <section className="propertyTransaction-graphArea">
         <article className="propertyTransaction-graphArea-control">
-          <form className="propertyTransaction-graphArea-control-container">
+          <form className="propertyTransaction-graphArea-control-container" onSubmit={handleSubmit}>
             <div className="propertyTransaction-graphArea-control-container-title">表示内容を選択</div>
 
             <div className="propertyTransaction-graphArea-control-container-place">
               <IconText icon={faLocationDot} text="場所" className="formItemName" />
-              <RenderSelectBox name="place" options={prefCodeOptions} selectedValue={formData.place} onChange={handleInputChange} />
+              <RenderSelectBox name="place" options={prefCodeOptions} value={formData.place} onChange={handleInputChange} />
             </div>
 
             <div className="propertyTransaction-graphArea-control-container-year">
               <IconText icon={faCalendarCheck} text="年度" className="formItemName" />
-              <RenderSelectBox name="year" options={yearOptions} selectedValue={formData.year} onChange={handleInputChange} />
+              <RenderSelectBox name="year" options={yearOptions} value={formData.year} onChange={handleInputChange} />
             </div>
 
             <div className="propertyTransaction-graphArea-control-container-kinds">
@@ -62,12 +99,6 @@ const PropertyTransaction = () => {
             </div>
           </form>
         </article>
-      </section>
-
-      {/* formDataの状況を表示 */}
-      <section className="propertyTransaction-formDataStatus">
-        <h3>フォームデータの状態：</h3>
-        <pre>{JSON.stringify(formData, null, 2)}</pre>
       </section>
     </div>
   );
