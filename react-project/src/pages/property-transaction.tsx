@@ -4,6 +4,7 @@ import { faLocationDot, faSquarePollVertical, faCalendarCheck, faShapes } from "
 import IconText from "../components/ui/icon-and-text-pair";
 import RenderSelectBox from "../components/forms/render-select-box";
 import RenderRadioGroup from "../components/forms/render-radio-group";
+import RectangularButton from "../components/ui/rectangular-button";
 
 const PropertyTransaction = () => {
   const placeOptions = [
@@ -38,22 +39,28 @@ const PropertyTransaction = () => {
 
       <section className="propertyTransaction-graphArea">
         <article className="propertyTransaction-graphArea-control">
-          <div className="propertyTransaction-graphArea-control-title">表示内容を選択</div>
+          <form className="propertyTransaction-graphArea-control-container">
+            <div className="propertyTransaction-graphArea-control-container-title">表示内容を選択</div>
 
-          <div className="propertyTransaction-graphArea-control-place">
-            <IconText icon={faLocationDot} text="場所" className="formItemName" classNameText="text" />
-            <RenderSelectBox name="place" options={placeOptions} />
-          </div>
+            <div className="propertyTransaction-graphArea-control-container-place">
+              <IconText icon={faLocationDot} text="場所" className="formItemName" />
+              <RenderSelectBox name="place" options={placeOptions} />
+            </div>
 
-          <div className="propertyTransaction-graphArea-control-year">
-            <IconText icon={faCalendarCheck} text="年度" className="formItemName" classNameText="text" />
-            <RenderSelectBox name="year" options={yearOptions} />
-          </div>
+            <div className="propertyTransaction-graphArea-control-container-year">
+              <IconText icon={faCalendarCheck} text="年度" className="formItemName" />
+              <RenderSelectBox name="year" options={yearOptions} />
+            </div>
 
-          <div className="propertyTransaction-graphArea-control-kinds">
-            <IconText icon={faShapes} text="種別" className="formItemName" classNameText="text" />
-            <RenderRadioGroup name="kinds" options={typeOptions} />
-          </div>
+            <div className="propertyTransaction-graphArea-control-container-kinds">
+              <IconText icon={faShapes} text="種別" className="formItemName" />
+              <RenderRadioGroup name="kinds" options={typeOptions} />
+            </div>
+
+            <div className="propertyTransaction-graphArea-control-container-download">
+              <RectangularButton type="submit" text="データをダウンロード" />
+            </div>
+          </form>
         </article>
       </section>
     </div>

@@ -1,0 +1,10 @@
+@import "/src/styles/colors.scss";
+
+.rectangularButton {
+  width: 311px;
+  height: 52px;
+  border: none;
+  border-radius: 2px;
+  color: $text-white;
+  background-color: $text-link;
+}

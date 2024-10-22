@@ -4,14 +4,6 @@
 
 $background-overlay-color: rgba($main-primary, 0.85);
 
-@mixin border-radius($radius) {
-  border-radius: $radius;
-  -webkit-border-radius: $radius;
-  -moz-border-radius: $radius;
-  -ms-border-radius: $radius;
-  -o-border-radius: $radius;
-}
-
 .propertyTransaction {
   height: 100%;
   display: flex;
@@ -24,7 +16,7 @@ $background-overlay-color: rgba($main-primary, 0.85);
   &-titleArea {
     height: 56px;
     color: $main-white;
-    margin: 40px 40px 0 40px;
+    margin: 40px 40px 0;
     border-bottom: 1px solid $text-grey;
     box-sizing: border-box;
 
@@ -57,19 +49,29 @@ $background-overlay-color: rgba($main-primary, 0.85);
       height: 100%;
       color: $text-black;
       background-color: $main-primary-light;
-      @include border-radius(4px);
+      border-radius: 4px;
+      display: flex;
+      flex-direction: column;
 
-      > * {
-        margin: 0 24px;
+      &-container {
+        height: 100%;
+        margin: 24px;
+        font-size: $font-size-s;
+        display: flex;
+        flex-direction: column;
 
-        &:first-of-type {
-          //&:last-of-type
-          margin-top: 24px;
-          margin-bottom: 24px;
-          font-size: $font-size-m;
+        .formItemName {
+          gap: 6px;
         }
 
-        &:not(:first-of-type) {
+        &-title {
+          font-size: $font-size-m;
+          margin-bottom: 24px;
+        }
+
+        &-place,
+        &-year,
+        &-kinds {
           font-size: $font-size-s;
           border-top: 1px solid $component-border;
           padding: 24px 0;
@@ -77,17 +79,17 @@ $background-overlay-color: rgba($main-primary, 0.85);
           gap: 24px;
         }
 
-        .formItemName {
-          gap: 8px;
+        &-kinds {
+          align-items: flex-start;
+
+          .formItemName {
+            height: $radio-button-size;
+          }
         }
-      }
 
-      &-kinds {
-        align-items: flex-start;
-
-        .formItemName {
-          // ラジオボタン 1 つ分の高さで上下中央揃え
-          height: $radio-button-size;
+        &-download {
+          font-size: $font-size-m;
+          margin-top: auto;
         }
       }
     }
