@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./property-transaction.scss";
 import { faLocationDot, faSquarePollVertical, faCalendarCheck, faShapes } from "@fortawesome/free-solid-svg-icons";
 import IconText from "../components/ui/icon-and-text-pair";
@@ -8,10 +8,24 @@ import RectangularButton from "../components/ui/rectangular-button";
 import { prefCodeOptions, yearOptions, displayTypeOptions } from "../data/propertyTransactionOptions";
 
 const PropertyTransaction = () => {
-  const formData = {
+  // useState関数を使用することで、リアクティブに状態管理が行えるそう
+  // 読み込み用の第一引数と、変更用の第二引数があるが、分割代入するのが基本とのこと
+  // 参照：https://qiita.com/TaikiTkwkbysh/items/780144eea9ea0469b73c
+  const [formData, setFormData] = useState({
     place: "13",
     year: "2021",
     kinds: "1",
+  });
+
+  // フォーム内の値が変更された時に呼び出し、その値をstateに反映させる
+  // SelectまたはInputからのイベントに限定して変更を検知する
+  // 参照：https://nano-toy-lab.com/react/select/
+  const handleInputChange = (e: React.ChangeEvent<HTMLSelectElement | HTMLInputElement>) => {
+    setFormData({
+      ...formData,
+      // 変更されたイベントをターゲットとして、keyとvalueをセットする
+      [e.target.name]: e.target.value,
+    });
   };
 
   return (
@@ -30,17 +44,17 @@ const PropertyTransaction = () => {
 
             <div className="propertyTransaction-graphArea-control-container-place">
               <IconText icon={faLocationDot} text="場所" className="formItemName" />
-              <RenderSelectBox name="place" options={prefCodeOptions} selectedValue={formData.place} />
+              <RenderSelectBox name="place" options={prefCodeOptions} selectedValue={formData.place} onChange={handleInputChange} />
             </div>
 
             <div className="propertyTransaction-graphArea-control-container-year">
               <IconText icon={faCalendarCheck} text="年度" className="formItemName" />
-              <RenderSelectBox name="year" options={yearOptions} selectedValue={formData.year} />
+              <RenderSelectBox name="year" options={yearOptions} selectedValue={formData.year} onChange={handleInputChange} />
             </div>
 
             <div className="propertyTransaction-graphArea-control-container-kinds">
               <IconText icon={faShapes} text="種別" className="formItemName" />
-              <RenderRadioGroup name="kinds" options={displayTypeOptions} />
+              <RenderRadioGroup name="kinds" options={displayTypeOptions} selectedValue={formData.kinds} onChange={handleInputChange} />
             </div>
 
             <div className="propertyTransaction-graphArea-control-container-download">
@@ -48,6 +62,12 @@ const PropertyTransaction = () => {
             </div>
           </form>
         </article>
+      </section>
+
+      {/* formDataの状況を表示 */}
+      <section className="propertyTransaction-formDataStatus">
+        <h3>フォームデータの状態：</h3>
+        <pre>{JSON.stringify(formData, null, 2)}</pre>
       </section>
     </div>
   );

@@ -6,11 +6,12 @@ interface RenderSelectBoxProps {
   name: string;
   options: { value: string; label: string }[];
   selectedValue?: string;
+  onChange?: (e: React.ChangeEvent<HTMLSelectElement>) => void;
 }
 
-const RenderSelectBox: React.FC<RenderSelectBoxProps> = ({ className, name, options, selectedValue }) => {
+const RenderSelectBox: React.FC<RenderSelectBoxProps> = ({ className, name, options, selectedValue, onChange }) => {
   return (
-    <select className={`renderSelectBox ${className}`} name={name}>
+    <select className={`renderSelectBox ${className}`} name={name} onChange={onChange}>
       {options.map((option) => {
         // 親要素にてselectedValueが指定されている場合は、当該optionをselectedにする
         const isSelected = option.value === selectedValue;
