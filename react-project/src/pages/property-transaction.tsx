@@ -5,29 +5,9 @@ import IconText from "../components/ui/icon-and-text-pair";
 import RenderSelectBox from "../components/forms/render-select-box";
 import RenderRadioGroup from "../components/forms/render-radio-group";
 import RectangularButton from "../components/ui/rectangular-button";
+import { prefCodeOptions, yearOptions, displayTypeOptions } from "../data/propertyTransactionOptions";
 
 const PropertyTransaction = () => {
-  const placeOptions = [
-    { value: "13", label: "東京都" },
-    { value: "14", label: "神奈川県" },
-    { value: "11", label: "埼玉県" },
-    { value: "12", label: "千葉県" },
-  ];
-
-  const yearOptions = [
-    { value: "2019", label: "2019年" },
-    { value: "2020", label: "2020年" },
-    { value: "2021", label: "2021年" },
-  ];
-
-  const typeOptions = [
-    { value: "1", label: "土地（住宅地）" },
-    { value: "2", label: "土地（商業地）" },
-    { value: "3", label: "中古マンション等" },
-    { value: "4", label: "農地" },
-    { value: "5", label: "林地" },
-  ];
-
   return (
     <div className="propertyTransaction" style={{ "--background-image": 'url("/images/map-image.png")' } as React.CSSProperties}>
       <section className="propertyTransaction-titleArea">
@@ -44,7 +24,7 @@ const PropertyTransaction = () => {
 
             <div className="propertyTransaction-graphArea-control-container-place">
               <IconText icon={faLocationDot} text="場所" className="formItemName" />
-              <RenderSelectBox name="place" options={placeOptions} />
+              <RenderSelectBox name="place" options={prefCodeOptions} />
             </div>
 
             <div className="propertyTransaction-graphArea-control-container-year">
@@ -54,7 +34,7 @@ const PropertyTransaction = () => {
 
             <div className="propertyTransaction-graphArea-control-container-kinds">
               <IconText icon={faShapes} text="種別" className="formItemName" />
-              <RenderRadioGroup name="kinds" options={typeOptions} />
+              <RenderRadioGroup name="kinds" options={displayTypeOptions} />
             </div>
 
             <div className="propertyTransaction-graphArea-control-container-download">
