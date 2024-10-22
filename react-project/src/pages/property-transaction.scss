@@ -3,11 +3,18 @@
 
 $background-overlay-color: rgba($main-primary, 0.85);
 
+@mixin border-radius($radius) {
+  border-radius: $radius;
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  -ms-border-radius: $radius;
+  -o-border-radius: $radius;
+}
+
 .propertyTransaction {
+  height: 100%;
   display: flex;
   flex-direction: column;
-  width: 100%;
-  height: 100%;
   // background-color は背景画像より下位のレイヤーに描画されるため、linear-gradient を使用する
   // background では、左の値から「,」区切りで上位レイヤーが表示される仕様とのこと
   background: linear-gradient($background-overlay-color, $background-overlay-color), var(--background-image) no-repeat center center;
@@ -15,13 +22,14 @@ $background-overlay-color: rgba($main-primary, 0.85);
 
   &-titleArea {
     height: 56px;
-    margin: 40px 40px 0 40px;
     color: $main-white;
+    margin: 40px 40px 0 40px;
     border-bottom: 1px solid $text-grey;
     box-sizing: border-box;
 
     &-content {
       height: 40px;
+      margin-bottom: 16px;
       display: flex;
       align-items: flex-end;
       gap: 16px;
@@ -33,6 +41,40 @@ $background-overlay-color: rgba($main-primary, 0.85);
 
       &-description {
         font-size: $font-size-s;
+      }
+    }
+  }
+
+  &-graphArea {
+    height: 780px;
+    margin: 40px;
+    display: flex;
+    justify-content: flex-end;
+
+    &-control {
+      width: 359px;
+      height: 100%;
+      color: $text-black;
+      background-color: $main-primary-light;
+      @include border-radius(4px);
+
+      &-title {
+        height: 48px;
+        font-size: $font-size-m;
+        margin: 24px;
+      }
+
+      &-place,
+      &-year {
+        margin: 0 26px 0 24px;
+        padding: 24px 0 24px 0;
+        display: flex;
+        font-size: $font-size-s;
+        gap: 24px;
+
+        .formItemName {
+          gap: 8px;
+        }
       }
     }
   }

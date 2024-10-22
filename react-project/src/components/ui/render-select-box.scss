@@ -1,0 +1,11 @@
+@import "/src/styles/colors.scss";
+
+.renderSelectBox {
+  width: 240px;
+  height: 40px;
+  color: $text-black;
+  background-color: $main-white;
+  border: none;
+  border-radius: 2px;
+  padding: 0 12px;
+}
