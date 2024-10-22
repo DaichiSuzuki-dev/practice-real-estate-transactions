@@ -65,6 +65,12 @@ const PropertyTransaction = () => {
     await fetchData();
   };
 
+  // 配列の中から、valueに一致するlabelを返す処理
+  const findLabelForValue = (options: { value: string; label: string }[], targetValue: string): string => {
+    const foundOption = options.find((option) => option.value === targetValue);
+    return foundOption ? foundOption.label : "Undefined";
+  };
+
   return (
     <div className="propertyTransaction" style={{ "--background-image": 'url("/images/map-image.png")' } as React.CSSProperties}>
       <section className="propertyTransaction-titleArea">
@@ -75,6 +81,14 @@ const PropertyTransaction = () => {
       </section>
 
       <section className="propertyTransaction-graphArea">
+        <article className="propertyTransaction-graphArea-graph">
+          <div className="propertyTransaction-graphArea-graph-title">
+            <IconText icon={faLocationDot} text={findLabelForValue(prefCodeOptions, formData.place)} className="graphTitleItemName" />
+            <IconText icon={faCalendarCheck} text={`${formData.year}年`} className="graphTitleItemName" />
+            <IconText icon={faShapes} text={findLabelForValue(displayTypeOptions, formData.kinds)} className="graphTitleItemName" />
+          </div>
+        </article>
+
         <article className="propertyTransaction-graphArea-control">
           <form className="propertyTransaction-graphArea-control-container" onSubmit={handleSubmit}>
             <div className="propertyTransaction-graphArea-control-container-title">表示内容を選択</div>

@@ -43,6 +43,27 @@ $background-overlay-color: rgba($main-primary, 0.85);
     margin: 40px;
     display: flex;
     justify-content: flex-end;
+    gap: 24px;
+
+    &-graph {
+      flex: 1;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      &-title {
+        display: flex;
+        flex-direction: row;
+        color: $text-white;
+        font-size: $font-size-xl;
+        gap: 48px;
+
+        .graphTitleItemName {
+          gap: 12px;
+        }
+      }
+    }
 
     &-control {
       width: 359px;
