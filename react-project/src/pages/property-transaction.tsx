@@ -8,6 +8,12 @@ import RectangularButton from "../components/ui/rectangular-button";
 import { prefCodeOptions, yearOptions, displayTypeOptions } from "../data/propertyTransactionOptions";
 
 const PropertyTransaction = () => {
+  const formData = {
+    place: "13",
+    year: "2021",
+    kinds: "1",
+  };
+
   return (
     <div className="propertyTransaction" style={{ "--background-image": 'url("/images/map-image.png")' } as React.CSSProperties}>
       <section className="propertyTransaction-titleArea">
@@ -24,12 +30,12 @@ const PropertyTransaction = () => {
 
             <div className="propertyTransaction-graphArea-control-container-place">
               <IconText icon={faLocationDot} text="場所" className="formItemName" />
-              <RenderSelectBox name="place" options={prefCodeOptions} />
+              <RenderSelectBox name="place" options={prefCodeOptions} selectedValue={formData.place} />
             </div>
 
             <div className="propertyTransaction-graphArea-control-container-year">
               <IconText icon={faCalendarCheck} text="年度" className="formItemName" />
-              <RenderSelectBox name="year" options={yearOptions} />
+              <RenderSelectBox name="year" options={yearOptions} selectedValue={formData.year} />
             </div>
 
             <div className="propertyTransaction-graphArea-control-container-kinds">

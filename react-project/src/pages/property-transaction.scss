@@ -88,8 +88,11 @@ $background-overlay-color: rgba($main-primary, 0.85);
         }
 
         &-download {
-          font-size: $font-size-m;
           margin-top: auto;
+
+          button {
+            font-size: $font-size-m;
+          }
         }
       }
     }
